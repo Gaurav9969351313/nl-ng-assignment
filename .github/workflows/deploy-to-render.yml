@@ -74,10 +74,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: publish
     steps:
+      - name: Install Render CLI
+        run: curl -fsSL https://raw.githubusercontent.com/render-oss/cli/refs/heads/main/bin/install.sh | sh
       - name: Deploy to Render
         uses: gh-actions-workflows/deploy-docker-render@v1.1
         with:
           deploy-hook: ${{ secrets.RENDER_DEPLOY_HOOK }}
-          image-url: gauravtalele32/nl-ng-assignement:latest
+          image-url: gauravtalele32/nl-ng-assignment:latest
           render-api-key: ${{ secrets.RENDER_API_KEY }}
           wait-for-deployment: true
